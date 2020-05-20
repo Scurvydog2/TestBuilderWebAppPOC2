@@ -1,0 +1,43 @@
+<h2>My test</h2>
+<ul class="heroes">
+  <div >
+    <button (click)='addStep()'>Add Step</button>
+    <select id="step" [(ngModel)]="selectedLevel">
+     <option value="1">Open</option>
+     <option value="2">Click</option>
+     <option value="3">Select dropdown</option>
+     <option value="4">Select checkbox/radio</option>
+     <option value="5">Enter text</option>
+     <option value="6">Verify value</option>
+   </select>
+  </div>
+  <li *ngFor="let product of products" >
+    <div *ngIf='product.stepType==1'>Open <input type="text"[(ngModel)]='product.value'></div>
+    <div *ngIf='product.stepType==2'>Click (screen) 
+      <select  >
+      <option value="1">login</option>
+    </select>
+      field <select [(ngModel)]='product.field' >
+        <option value="1">login</option>
+      
+      </select>
+  </div>
+    <div *ngIf='product.stepType==3'>select (screen) (dropdown) value</div>
+    <div *ngIf='product.stepType==4'>select (screen) (options) values[multiselect dropdown]</div>
+    <div *ngIf='product.stepType==5'>Enter <input type="text"[(ngModel)]='product.value'> in (screen) <select [(ngModel)]='product.field' >
+      <option value="1">username</option>
+                <option value="2">password</option>
+    </select> </div>
+    <div *ngIf='product.stepType==6'>Verify (screen) <select >
+      <option value="1">tab1</option>
+      <option value="2">tab2</option>
+    </select> has value of <input type="text"></div>
+  </li>
+</ul>
+<div>
+  <input type="button" value="save" onclick='save()'>
+</div>
+
+<div>
+  <textarea readonly cols="100">{{products | json}}</textarea>
+</div>
